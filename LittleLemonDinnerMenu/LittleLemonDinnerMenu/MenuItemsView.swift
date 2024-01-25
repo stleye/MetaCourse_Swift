@@ -10,7 +10,7 @@ import SwiftUI
 struct MenuItemsView: View {
 
     @State private var showingSheet = false
-    @ObservedObject var viewModel = MenuViewViewModel()
+    @ObservedObject var viewModel: MenuViewViewModel
 
     var body: some View {
         NavigationStack {
@@ -82,5 +82,5 @@ struct MenuItemView: View {
 }
 
 #Preview {
-    MenuItemsView()
+    MenuItemsView(viewModel: MenuViewViewModel())
 }
