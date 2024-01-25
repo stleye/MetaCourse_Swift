@@ -22,23 +22,25 @@ struct MenuItemsView: View {
                 categoryView(for: .dessert)
                     .padding(.bottom)
             }
+            .toolbar {
+                ToolbarItem {
+                    Button(action: {
+                        showingSheet.toggle()
+                    }, label: {
+                        Image(systemName: "line.3.horizontal.decrease.circle")
+                    })
+                    .sheet(isPresented: $showingSheet) {
+                        MenuItemsOptionView()
+                        Button("Dismiss", action: { showingSheet.toggle() })
+                    }
+                }
+            }
         }
     }
     
     func categoryView(for category: MenuCategory) -> some View {
         CategoryView(menuItems: viewModel.menuItems(for: category))
             .navigationTitle("Menu")
-//            .toolbar(content: {
-//                Button(action: {
-//                    showingSheet.toggle()
-//                }, label: {
-//                    Image(systemName: "line.3.horizontal.decrease.circle")
-//                })
-//                .sheet(isPresented: $showingSheet) {
-//                    MenuItemsOptionView()
-//                    Button("Dismiss", action: { showingSheet.toggle() })
-//                }
-//            })
     }
 }
 
